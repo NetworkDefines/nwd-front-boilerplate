@@ -18,4 +18,11 @@ module.exports = {
     ],
   },
   optimization: { minimizer: [] },
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    port: 3000,
+    hot: true,
+    historyApiFallback: true,
+  },
+  devtool: 'inline-source-map'
 };
