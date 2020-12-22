@@ -6,7 +6,8 @@
   "scripts": {
     "local": "webpack-dev-server --open",
     "build": "webpack",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx"
   },
   "dependencies": {
     "react": "^17.0.1",
