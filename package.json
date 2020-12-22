@@ -4,8 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "local": "webpack-dev-server --open",
-    "build": "webpack",
+    "local": "webpack-dev-server --env.NODE_ENV=local --open",
+    "start": "webpack-dev-server --env.NODE_ENV=development --open",
+    "build:local": "webpack --env.NODE_ENV=local",
+    "build:dev": "webpack --env.NODE_ENV=development",
+    "build:prod": "webpack --env.NODE_ENV=production",
     "tsc": "tsc",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx"
   },
