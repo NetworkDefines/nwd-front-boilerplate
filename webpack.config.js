@@ -4,8 +4,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = ({ NODE_ENV }) => {
+  const isProduction = NODE_ENV === 'production';
+  const isDevelopment = NODE_ENV === 'development';
+
   return {
-    mode: 'production',
+    mode: isProduction ? 'production' : 'development',
     entry: './src/index.tsx',
     output: {
       publicPath: '/',
@@ -39,12 +42,14 @@ module.exports = ({ NODE_ENV }) => {
       }),
     ],
     optimization: { minimizer: [] },
-    devServer: {
-      contentBase: path.join(__dirname, 'dist'),
-      port: 3000,
-      hot: true,
-      historyApiFallback: true,
-    },
+    devServer: isProduction
+      ? undefined
+      : {
+          contentBase: path.join(__dirname, 'dist'),
+          port: 3000,
+          hot: true,
+          historyApiFallback: true,
+        },
     devtool: 'inline-source-map',
   };
 };
