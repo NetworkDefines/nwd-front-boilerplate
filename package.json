@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "local": "webpack-dev-server --open",
-    "build": "webpack"
+    "build": "webpack",
+    "tsc": "tsc"
   },
   "dependencies": {
     "react": "^17.0.1",
