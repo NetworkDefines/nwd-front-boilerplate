@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = ({ NODE_ENV }) => {
   const isProduction = NODE_ENV === 'production';
@@ -53,7 +54,19 @@ module.exports = ({ NODE_ENV }) => {
         template: path.resolve(__dirname, './public/index.html'),
       }),
     ],
-    optimization: { minimizer: [] },
+    optimization: {
+      minimize: isProduction,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            mangle: true,
+            output: {
+              beautify: true,
+            },
+          },
+        }),
+      ],
+    },
     devServer: isProduction
       ? undefined
       : {
