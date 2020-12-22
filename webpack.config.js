@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -6,6 +7,16 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 module.exports = ({ NODE_ENV }) => {
   const isProduction = NODE_ENV === 'production';
   const isDevelopment = NODE_ENV === 'development';
+
+  const envPath = isProduction
+    ? '.env'
+    : isDevelopment
+    ? '.env.dev'
+    : '.env.local';
+
+  const envs = require('dotenv').config({
+    path: path.resolve(__dirname, envPath),
+  }).parsed;
 
   return {
     mode: isProduction ? 'production' : 'development',
@@ -33,6 +44,7 @@ module.exports = ({ NODE_ENV }) => {
       ],
     },
     plugins: [
+      new webpack.EnvironmentPlugin({ ...envs }),
       new CleanWebpackPlugin(),
       new HTMLWebpackPlugin({
         filename: 'index.html',
