@@ -42,6 +42,17 @@ module.exports = ({ NODE_ENV }) => {
           use: 'babel-loader',
           exclude: /node_modules/,
         },
+        {
+          test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2|pdf)$/i,
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+          },
+        },
+        {
+          test: /\.mp4$/,
+          use: 'file-loader?name=videos/[name].[ext]',
+        },
       ],
     },
     plugins: [
