@@ -1,3 +1,4 @@
+import Button from '@material-ui/core/Button';
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
@@ -23,6 +24,9 @@ function LandingPage(): ReactElement {
         </a>
       </header>
       <StyledDiv>StyledDiv sample</StyledDiv>
+      <Button variant="contained" color="primary">
+        Hello World
+      </Button>
     </div>
   );
 }
