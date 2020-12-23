@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -65,6 +66,12 @@ module.exports = ({ NODE_ENV }) => {
         favicon: 'public/favicon.ico',
         template: path.resolve(__dirname, './public/index.html'),
       }),
+      ...(isProduction ? [
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          openAnalyzer: false
+        }),
+      ] : []),
     ],
     optimization: {
       minimize: isProduction,
