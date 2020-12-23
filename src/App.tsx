@@ -1,6 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
+import AuthNavigator from './components/navigator/AuthNavigator';
+import MainNavigator from './components/navigator/MainNavigator';
 import { userState } from './store/atoms';
 
 const serverURL = process.env.REACT_APP_SERVER_URL;
@@ -35,21 +37,7 @@ function App(): ReactElement {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div className="App">
-          <header className="App-header">
-            <p>
-              Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
+        <>{user ? <MainNavigator /> : <AuthNavigator />}</>
       )}
     </>
   );
