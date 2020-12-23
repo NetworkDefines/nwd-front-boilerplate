@@ -24,8 +24,9 @@ module.exports = ({ NODE_ENV }) => {
     entry: './src/index.tsx',
     output: {
       publicPath: '/',
-      filename: 'main.js',
       path: path.resolve(__dirname, 'dist'),
+      filename: isProduction ? '[name].[contenthash:8].js' : '[name].js',
+      chunkFilename: isProduction ? '[id].[chunkhash:8].js' : '[id].js',
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -77,6 +78,21 @@ module.exports = ({ NODE_ENV }) => {
           },
         }),
       ],
+      splitChunks: {
+        chunks: 'all',
+        minSize: 20000,
+        cacheGroups: {
+          default: {
+            minChunks: 2,
+            priority: 2,
+            reuseExistingChunk: true,
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: 1,
+          },
+        },
+      },
     },
     devServer: isProduction
       ? undefined
