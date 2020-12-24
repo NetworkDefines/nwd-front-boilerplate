@@ -7,6 +7,11 @@ const StyledDiv = styled.div`
   background-color: ${({ theme }) => theme.gray};
 `;
 
+const CustomButton = styled(Button)`
+  color: yellow;
+  background-color: skyblue;
+`;
+
 function LandingPage(): ReactElement {
   return (
     <div className="App">
@@ -27,6 +32,9 @@ function LandingPage(): ReactElement {
       <Button variant="contained" color="primary">
         Hello World
       </Button>
+      <CustomButton variant="contained" color="primary">
+        Hello World2
+      </CustomButton>
     </div>
   );
 }
