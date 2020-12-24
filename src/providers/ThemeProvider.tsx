@@ -1,10 +1,11 @@
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import React, { ReactElement } from 'react';
 import {
   createGlobalStyle,
   ThemeProvider as StyledThemeProvider,
 } from 'styled-components';
 
-import { styledTheme } from '../theme';
+import { muiTheme, styledTheme } from '../theme';
 
 const GlobalStyle = createGlobalStyle`
   body, p {
@@ -22,7 +23,9 @@ function ThemeProvider({ children }: Props): ReactElement {
   return (
     <>
       <GlobalStyle />
-      <StyledThemeProvider theme={styledTheme}>{children}</StyledThemeProvider>
+      <StyledThemeProvider theme={styledTheme}>
+        <MuiThemeProvider theme={muiTheme}>{children}</MuiThemeProvider>
+      </StyledThemeProvider>
     </>
   );
 }
