@@ -1,3 +1,4 @@
+import { StylesProvider } from '@material-ui/core/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { RecoilRoot } from 'recoil';
@@ -8,9 +9,11 @@ import { ThemeProvider } from './providers/ThemeProvider';
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <StylesProvider injectFirst>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </StylesProvider>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('app'),
