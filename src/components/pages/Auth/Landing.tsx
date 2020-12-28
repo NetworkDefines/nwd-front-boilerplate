@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
@@ -16,6 +17,7 @@ function LandingPage(): ReactElement {
   return (
     <div className="App">
       <header className="App-header">
+        <Typography variant="h3">test 한글</Typography>
         <p>
           Edit <code>src/pages/Auth/Landing.tsx</code> and save to reload.
         </p>
