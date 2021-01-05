@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
   margin: 30px 0;
-  background-color: red;
+  background-color: ${({ theme }) => theme.gray};
 `;
 
 function LandingPage(): ReactElement {
