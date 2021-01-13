@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
+import { device } from '@/theme';
+
 const StyledDiv = styled.div`
   margin: 30px 0;
   background-color: ${({ theme }) => theme.gray};
@@ -11,6 +13,33 @@ const StyledDiv = styled.div`
 const CustomButton = styled(Button)`
   color: yellow;
   background-color: skyblue;
+`;
+
+const StyledDiv2 = styled.div`
+  display: flex;
+  margin: 30px 0;
+  justify-content: space-between;
+  flex-direction: column;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  color: white;
+  background-color: #435db8;
+  width: 100%;
+  & + & {
+    margin-top: 5px;
+  }
+
+  @media ${device.tablet} {
+    & + & {
+      margin-top: 0;
+      margin-left: 5px;
+    }
+  }
 `;
 
 function LandingPage(): ReactElement {
@@ -37,6 +66,19 @@ function LandingPage(): ReactElement {
       <CustomButton variant="contained" color="primary">
         Hello World2
       </CustomButton>
+
+      <StyledDiv2>
+        <StyledButton variant="contained" color="primary">
+          Media Query sample1
+        </StyledButton>
+        <StyledButton
+          style={{ backgroundColor: '#2C4095' }}
+          variant="contained"
+          color="primary"
+        >
+          Media Query sample2
+        </StyledButton>
+      </StyledDiv2>
     </div>
   );
 }
